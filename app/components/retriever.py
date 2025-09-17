@@ -4,7 +4,7 @@ from langchain_core.prompts import PromptTemplate
 from app.components.llm import load_llm
 from app.components.vector_store import load_vector_store
 
-from app.config.config import HUGGINGFACE_REPO_ID,HF_TOKEN
+from app.config.config import HF_TOKEN
 from app.common.logger import get_logger
 from app.common.custom_exception import CustomException
 
