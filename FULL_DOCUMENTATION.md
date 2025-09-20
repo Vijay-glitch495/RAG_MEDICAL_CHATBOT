@@ -45,20 +45,21 @@ cd custom_jenkins
 Make sure **Docker Desktop is running in the background**, then build the image:
 
 ```bash
-docker build -t jenkins-dind .
+docker pull jenkins/jenkins:lts-jdk17
 ```
 
 ### 3. Run Jenkins Container
 
 ```bash
-docker run -d ^
-  --name jenkins-dind ^
-  --privileged ^
-  -p 8080:8080 ^
-  -p 50000:50000 ^
-  -v /var/run/docker.sock:/var/run/docker.sock ^
-  -v jenkins_home:/var/jenkins_home ^
-  jenkins-dind
+docker run -d \
+  --name jenkins-dind \
+  --privileged \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v jenkins_home:/var/jenkins_home \
+  jenkins/jenkins:lts-jdk17
+
 ```
 
 > ✅ If successful, you’ll get a long alphanumeric container ID
