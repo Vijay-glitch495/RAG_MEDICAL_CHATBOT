@@ -335,3 +335,47 @@ If all stages succeed (Checkout → Build → Trivy Scan → Push to ECR → Dep
 🎉 **CI/CD Deployment to AWS App Runner is complete!**
 
 ✅ Your app is now live and running on AWS 🚀
+
+## What if want to start my workflow again..?
+
+Docker won’t let you create a new container with the same name if the old one still exists. That’s why you get the error.
+
+Here’s the safe sequence if you want to **remove and re-create Jenkins** with the same name:
+
+### 1. Stop the container
+
+```bash
+docker stop jenkins-dind
+```
+
+### 2. Remove the container (but not the data, if you used a volume)
+
+```bash
+docker rm jenkins-dind
+```
+
+> ⚠️ This removes only the container, not the `jenkins_home` volume.
+> So your jobs, plugins, and credentials are safe if you mapped `-v jenkins_home:/var/jenkins_home`.
+
+### 3. Recreate it with the same name
+
+```bash
+docker run -d \
+  --name jenkins-dind \
+  -p 8080:8080 -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  jenkins/jenkins:lts-jdk17
+```
+
+### 4. Access Jenkins
+
+Open:
+
+```
+http://localhost:8080
+```
+
+👉 This way you’re always free to **remove/recreate the container** as many times as you want, without losing Jenkins data (as long as you keep the volume).
+
+Would you like me to also show you how to **list your existing Docker volumes** so you can confirm that `jenkins_home` is still there before recreating?
+-----
