@@ -64,4 +64,12 @@ pipeline {
     }
 
 
-//kkkk
+}
+
+
+
+// git fetch origin
+// git reset --hard origin/main
+// git fetch updates your local copy of the remote branch.
+
+// git reset --hard origin/main makes your local branch exactly match the remote, discarding any local changes.
