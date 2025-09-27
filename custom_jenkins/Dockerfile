@@ -23,3 +23,18 @@ VOLUME /var/lib/docker
 
 # Switch back to the Jenkins user
 USER jenkins
+
+
+# I don't understand what I am doing here. If I don't pull, if I don't push, how can I pull?
+# 🔹 Step 1: Pull = Download the Image
+
+# When you run:
+
+# docker pull jenkins/jenkins:lts-jdk17
+
+
+# 👉 You are downloading the Jenkins image (prebuilt by the Jenkins community) from Docker Hub to your computer.
+
+# You don’t need to push anything, because you’re just a consumer.
+
+# Push is only needed if you build a new image and want to share it.
